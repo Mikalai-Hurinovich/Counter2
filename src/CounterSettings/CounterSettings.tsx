@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import s from './CounterSettings.module.css'
 import Button from "@material-ui/core/Button/Button";
-import {Input} from "@material-ui/core";
+import {TextField} from "@material-ui/core";
 
 type CounterSettingsPropsType = {
     MaxVal: number
@@ -13,10 +13,11 @@ type CounterSettingsPropsType = {
 }
 
 const CounterSettings = (props: CounterSettingsPropsType) => {
+
     let [min, setMin] = useState<number>(props.MinVal);
     let [max, setMax] = useState<number>(props.MaxVal);
 
-    const setMaxValue = (e: React.FormEvent<HTMLInputElement>) => {
+    const setMaxValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.currentTarget.valueAsNumber <= min) {
             props.setError('Incorrect Value!')
         } else {
@@ -26,7 +27,7 @@ const CounterSettings = (props: CounterSettingsPropsType) => {
 
 
     }
-    const setMinValue = (e: React.FormEvent<HTMLInputElement>) => {
+    const setMinValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.currentTarget.valueAsNumber >= max || e.currentTarget.valueAsNumber < 0) {
             props.setError('Incorrect Value!')
 
@@ -44,7 +45,7 @@ const CounterSettings = (props: CounterSettingsPropsType) => {
             <h1 className={s.title}>Counter Settings</h1>
             <div className={s.counter__settings_body}>
                 <div>
-                    <span>Max Value:</span>
+                    <span>Max Value</span>
                     <input className={props.error === 'Incorrect Value!' ? s.error__input : ''}
                            type="number"
                            onChange={setMaxValue}
@@ -52,18 +53,21 @@ const CounterSettings = (props: CounterSettingsPropsType) => {
                 </div>
 
                 <div>
-                    <span>Start Value:</span>
+                    <span>Start Value</span>
                     <input className={props.error === 'Incorrect Value!' ? s.error__input : ''}
+
                            type="number"
                            onChange={setMinValue} value={min}/>
                 </div>
             </div>
-            <Button
-                variant="contained" color="primary" size={'large'}
-                className={s.button}
-                disabled={min < 0 || max < min || min === max}
-                onClick={setSettings}>Set
-            </Button>
+            <div className={s.counter__buttons}>
+                <Button
+                    variant="contained" color="primary" size={'small'}
+                    disabled={min < 0 || max < min || min === max}
+                    className={s.button}
+                    onClick={setSettings}>Set
+                </Button>
+            </div>
         </div>
     )
 }

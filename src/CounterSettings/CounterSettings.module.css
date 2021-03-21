@@ -27,51 +27,9 @@ body {
 }
 
 .counter__settings_body div {
-
     font-size: 25px;
 }
 
-.counter__display {
-    font-size: 90px;
-    border: 1px solid #fff;
-    color: white;
-    border-radius: 5px;
-}
-
-.counter__buttons {
-    padding: 20px 0;
-    display: flex;
-    justify-content: space-around;
-
-}
-
-.counter__buttons button {
-    padding: 5px 10px;
-    background-color: #041430;
-    border-radius: 5px;
-    color: white;
-    font-size: 20px;
-    border: 1px solid #fff;
-
-}
-
-.counter__buttons button:disabled {
-    background-color: grey;
-}
-
-.button {
-    padding: 10px 20px;
-    background-color: #041430;
-    border-radius: 5px;
-    color: white;
-    font-size: 20px;
-    border: 1px solid #fff;
-
-}
-
-.button:disabled {
-    background-color: grey;
-}
 
 input {
     border: 2px solid #6e6666;
@@ -85,6 +43,16 @@ input {
     background-color: #f3b9b9;
     opacity: 0.7;
     color: black;
+}
+
+.counter__buttons button {
+    padding: 5px 10px;
+    background-color: #041430;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    border: 1px solid #fff;
+
 }
 
 

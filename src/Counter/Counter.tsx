@@ -27,7 +27,7 @@ const Counter = (props: CounterPropsType) => {
                             className={s.counter__display}>{props.error ? props.error : props.counter}</div>
                         <div className={s.counter__buttons}>
                             <Button
-                                variant="contained" color="primary" size={'medium'}
+                                variant="contained" color="primary" size={'small'}
                                 disabled={props.counter >= props.MaxVal}
                                 className={s.increment}
                                 onClick={() => {
@@ -35,7 +35,7 @@ const Counter = (props: CounterPropsType) => {
                                 }}>+
                             </Button>
                             <Button
-                                variant="contained" color="primary" size={'medium'}
+                                variant="contained" color="primary" size={'small'}
                                 disabled={props.counter <= props.MinVal}
                                 className={s.decrement}
                                 onClick={() => {
@@ -43,13 +43,13 @@ const Counter = (props: CounterPropsType) => {
                                 }}>-
                             </Button>
                             <Button
-                                variant="contained" color="primary" size={'medium'}
+                                variant="contained" color="primary" size={'small'}
                                 disabled={props.counter === props.MinVal}
                                 className={s.reset}
                                 onClick={() => props.setCounter(props.MinVal)}>Reset
                             </Button>
                             <Button
-                                variant="contained" color="primary" size={'medium'}
+                                variant="contained" color="primary" size={'small'}
                                 className={s.show}
                                 onClick={() => props.setShow(true)}>Set
                             </Button>

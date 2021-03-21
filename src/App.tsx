@@ -16,7 +16,7 @@ function App() {
         setMaxVal(max)
         setError('')
         setCounter(counter)
-        setShow(!show)
+        setShow(false)
     }
 
     return (
