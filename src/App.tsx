@@ -4,9 +4,13 @@ import Counter from "./Counter/Counter";
 import CounterSettings from "./CounterSettings/CounterSettings";
 
 function App() {
-    let [counter, setCounter] = useState<number>(0);
-    let [MinVal, setMinVal] = useState<number>(0);
-    let [MaxVal, setMaxVal] = useState<number>(5);
+    // Local Storage
+    let minValStorage = Number(localStorage.getItem('min'))
+    let maxValStorage = Number(localStorage.getItem('max'))
+    //Hooks
+    let [counter, setCounter] = useState<number>(minValStorage ? minValStorage : 0);
+    let [MinVal, setMinVal] = useState<number>(minValStorage ? minValStorage : 0);
+    let [MaxVal, setMaxVal] = useState<number>(maxValStorage ? maxValStorage : 5);
     let [error, setError] = useState<string>('');
     let [show, setShow] = useState<boolean>(false)
 

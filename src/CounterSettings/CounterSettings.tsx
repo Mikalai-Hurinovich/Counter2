@@ -24,8 +24,6 @@ const CounterSettings = (props: CounterSettingsPropsType) => {
             props.setError('Please, enter value and \'Set\'')
         }
         setMax(e.currentTarget.valueAsNumber)
-
-
     }
     const setMinValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.currentTarget.valueAsNumber >= max || e.currentTarget.valueAsNumber < 0) {
@@ -37,6 +35,9 @@ const CounterSettings = (props: CounterSettingsPropsType) => {
         setMin(e.currentTarget.valueAsNumber)
     }
     const setSettings = () => {
+        //local storage
+        localStorage.setItem('max', JSON.stringify(max))
+        localStorage.setItem('min', JSON.stringify(min))
         props.setSettings(min, max)
         props.setCounter(min)
     }
@@ -55,9 +56,9 @@ const CounterSettings = (props: CounterSettingsPropsType) => {
                 <div>
                     <span>Start Value</span>
                     <input className={props.error === 'Incorrect Value!' ? s.error__input : ''}
-
                            type="number"
-                           onChange={setMinValue} value={min}/>
+                           onChange={setMinValue}
+                           value={min}/>
                 </div>
             </div>
             <div className={s.counter__buttons}>

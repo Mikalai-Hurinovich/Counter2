@@ -15,7 +15,6 @@ const Counter = (props: CounterPropsType) => {
     const IncrementStyle = {
         color: 'red',
     }
-
     return (
         <>
             <div className={s.main}>
