@@ -35,7 +35,7 @@ const CounterSettings = (props: CounterSettingsPropsType) => {
         setMin(e.currentTarget.valueAsNumber)
     }
     const setSettings = () => {
-        //local storage
+        //set local storage
         localStorage.setItem('max', JSON.stringify(max))
         localStorage.setItem('min', JSON.stringify(min))
         props.setSettings(min, max)
