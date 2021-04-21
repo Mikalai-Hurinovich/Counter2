@@ -2,8 +2,22 @@ import React, {useState} from 'react';
 import './App.css';
 import Counter from "./Counter/Counter";
 import CounterSettings from "./CounterSettings/CounterSettings";
+import {useDispatch, useSelector} from "react-redux";
+import {initialStateType} from "./Redux/counter-reducer";
+import {ReduxRootState} from "./Redux/store";
 
 function App() {
+    // 1 создаешь стор
+    // 2/ создать редьюсер
+    // 3 initState = {
+    // count: 0
+    // }
+    // 4. создаешь экшн креатор, пишешь case in reducer, логика для изменения счетчика
+    // {
+    //     ...state, count: action.count
+    // }
+    // const {minVal, counter, maxVal, error, show} = useSelector<ReduxRootState, initialStateType>(state = > state.counter)
+    const dispatch = useDispatch();
     // Local Storage
     let minValStorage = Number(localStorage.getItem('min'))
     let maxValStorage = Number(localStorage.getItem('max'))

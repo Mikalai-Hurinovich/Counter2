@@ -1,7 +1,7 @@
 import Button from "@material-ui/core/Button/Button";
 import React from "react";
 import s from './Counter.module.css'
-// import {Button} from'@material-ui/icons'
+
 
 type CounterPropsType = {
     counter: number

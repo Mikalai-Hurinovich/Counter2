@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import s from './CounterSettings.module.css'
 import Button from "@material-ui/core/Button/Button";
-import {TextField} from "@material-ui/core";
 
 type CounterSettingsPropsType = {
     MaxVal: number
