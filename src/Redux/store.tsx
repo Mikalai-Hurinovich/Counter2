@@ -1,4 +1,3 @@
-import React from 'react'
 import {combineReducers, createStore} from "redux";
 import CounterReducer from "./counter-reducer";
 

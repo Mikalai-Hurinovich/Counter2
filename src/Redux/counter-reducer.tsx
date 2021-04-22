@@ -1,5 +1,3 @@
-import React from 'react';
-
 const SET_MIN_VAL = 'SET_MIN_VAL'
 const SET_MAX_VAL = 'SET_MAX_VAL'
 const SET_COUNTER = 'SET_COUNTER'
@@ -11,7 +9,7 @@ export type initialStateType = {
     minVal: number,
     maxVal: number,
     error: string,
-    show: boolean
+    show: boolean,
 }
 let initialState: initialStateType = {
     counter: 0,
@@ -30,18 +28,18 @@ type ActionsTypes = counterACType
     | setMaxValACType
     | setErrorACType
     | setShowACType
-export const CounterReducer = (state: initialStateType = initialState, action: ActionsTypes) => {
+export const CounterReducer = (state: initialStateType = initialState, action: ActionsTypes): initialStateType => {
     switch (action.type) {
         case SET_COUNTER:
             return {...state, counter: action.counter}
         case SET_MIN_VAL:
-            return {...state, counter: action.minVal}
+            return {...state, minVal: action.minVal}
         case SET_MAX_VAL:
-            return {...state, counter: action.maxVal}
+            return {...state, maxVal: action.maxVal}
         case SET_ERROR:
-            return {...state, counter: action.error}
+            return {...state, error: action.error}
         case SET_SHOW:
-            return {...state, counter: action.show}
+            return {...state, show: action.show}
         default:
             return state
     }

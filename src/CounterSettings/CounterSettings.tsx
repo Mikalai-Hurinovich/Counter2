@@ -1,55 +1,59 @@
-import React, {useState} from "react";
+import React from "react";
 import s from './CounterSettings.module.css'
 import Button from "@material-ui/core/Button/Button";
+import {useDispatch} from "react-redux";
+import {setCounterAC, setMaxValAC, setMinValAC, setShowAC} from "../Redux/counter-reducer";
+import {saveState} from "../localStorage";
 
 type CounterSettingsPropsType = {
     MaxVal: number
     MinVal: number
-    setCounter: React.Dispatch<React.SetStateAction<number>>
-    setSettings: (min: number, max: number) => void
+    setCounter: (count: number) => void
+    setShow: (show: boolean) => void
+    // setSettings: (min: number, max: number) => void
     setError: (value: string) => void
     error: string
 }
 
 const CounterSettings = (props: CounterSettingsPropsType) => {
-
-    let [min, setMin] = useState<number>(props.MinVal);
-    let [max, setMax] = useState<number>(props.MaxVal);
-
+    const dispatch = useDispatch()
     const setMaxValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.currentTarget.valueAsNumber <= min) {
+        if (e.currentTarget.valueAsNumber <= props.MinVal) {
             props.setError('Incorrect Value!')
         } else {
             props.setError('Please, enter value and \'Set\'')
         }
-        setMax(e.currentTarget.valueAsNumber)
+        dispatch(setMaxValAC(e.currentTarget.valueAsNumber))
     }
     const setMinValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.currentTarget.valueAsNumber >= max || e.currentTarget.valueAsNumber < 0) {
+        if (e.currentTarget.valueAsNumber >= props.MaxVal || e.currentTarget.valueAsNumber < 0) {
             props.setError('Incorrect Value!')
 
         } else {
             props.setError('Please, enter value and \'Set\'')
         }
-        setMin(e.currentTarget.valueAsNumber)
+        dispatch(setMinValAC(e.currentTarget.valueAsNumber))
     }
     const setSettings = () => {
-        //set local storage
-        localStorage.setItem('max', JSON.stringify(max))
-        localStorage.setItem('min', JSON.stringify(min))
-        props.setSettings(min, max)
-        props.setCounter(min)
+        dispatch(setCounterAC(props.MinVal))
+        saveState('minVal', props.MinVal)
+        saveState('maxVal', props.MaxVal)
+        dispatch(setShowAC(false))
     }
     return (
         <div className={s.wrapper}>
+            <div className={s.error}>
+                {props.error}
+            </div>
             <h1 className={s.title}>Counter Settings</h1>
+
             <div className={s.counter__settings_body}>
                 <div>
                     <span>Max Value</span>
                     <input className={props.error === 'Incorrect Value!' ? s.error__input : ''}
                            type="number"
                            onChange={setMaxValue}
-                           value={max}/>
+                           value={props.MaxVal}/>
                 </div>
 
                 <div>
@@ -57,13 +61,13 @@ const CounterSettings = (props: CounterSettingsPropsType) => {
                     <input className={props.error === 'Incorrect Value!' ? s.error__input : ''}
                            type="number"
                            onChange={setMinValue}
-                           value={min}/>
+                           value={props.MinVal}/>
                 </div>
             </div>
             <div className={s.counter__buttons}>
                 <Button
                     variant="contained" color="primary" size={'small'}
-                    disabled={min < 0 || max < min || min === max}
+                    disabled={props.MinVal < 0 || props.MaxVal < props.MinVal || props.MinVal === props.MaxVal}
                     className={s.button}
                     onClick={setSettings}>Set
                 </Button>
